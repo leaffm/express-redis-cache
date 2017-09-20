@@ -143,6 +143,29 @@ app.get('/user',
   );
 ```
 
+or wether or not the cache entry needs to be refreshed using `res.use_express_redis_cache_refresh`:
+
+```js
+
+app.get('/user',
+
+  // middleware to decide if using cache
+
+  function (req, res, next) {
+    // Use only cache if user not signed in
+    res.use_express_redis_cache_refresh = ! req.signedCookies.user;
+
+    next();
+    }.
+
+  cache.route(), // this will be skipped if user is signed in
+
+  function (req, res) {
+    res.render('user');
+    }
+  );
+```
+
 # Prefix
 
 All entry names are prepended by a prefix. Prefix is set when calling the Constructor.
