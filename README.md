@@ -143,7 +143,7 @@ app.get('/user',
   );
 ```
 
-or wether or not the cache entry needs to be refreshed using `res.use_express_redis_cache_refresh`:
+or wether or not the cache entry needs to be refreshed using `res.express_redis_cache_refresh`:
 
 ```js
 
@@ -153,7 +153,7 @@ app.get('/user',
 
   function (req, res, next) {
     // Use only cache if user not signed in
-    res.use_express_redis_cache_refresh = ! req.signedCookies.user;
+    res.express_redis_cache_refresh = ! req.signedCookies.user;
 
     next();
     }.
